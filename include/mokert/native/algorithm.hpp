@@ -1,6 +1,6 @@
 #pragma once
-#include "moke/runtime/common.hpp"
-#include "moke/native/memory.hpp"
+#include "mokert/common.hpp"
+#include "mokert/native/memory.hpp"
 #include <cmath>
 #include <cstdlib>
 #include <random>

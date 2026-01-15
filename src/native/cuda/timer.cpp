@@ -1,5 +1,5 @@
-#include "moke/native/timer.hpp"
-#include "moke/native/runtime.hpp"
+#include "mokert/native/timer.hpp"
+#include "mokert/native/runtime.hpp"
 
 namespace moke {
 device_timer::device_timer() {

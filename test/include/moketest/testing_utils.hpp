@@ -1,6 +1,6 @@
 #pragma once
 #include "moketest/type_traits.hpp"
-#include <moke/native/memory.hpp>
+#include <mokert/native/memory.hpp>
 #include <gtest/gtest.h>
 
 #define ASSERT_IN(VALUE, LOWER, UPPER) \

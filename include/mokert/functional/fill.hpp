@@ -1,6 +1,6 @@
 #pragma once
-#include "moke/native.hpp"
-#include "moke/runtime/memory.hpp"
+#include "mokert/native.hpp"
+#include "mokert/memory.hpp"
 
 namespace moke::fill {
 template <class ValueType>

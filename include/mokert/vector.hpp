@@ -1,6 +1,6 @@
 #pragma once
-#include "moke/runtime/common.hpp"
-#include "moke/runtime/memory.hpp"
+#include "mokert/common.hpp"
+#include "mokert/memory.hpp"
 
 namespace moke {
 template <class T, class MS>
@@ -98,8 +98,8 @@ public:
 };
 } // namespace moke
 
-#include "moke/runtime/container/allocator.hpp"
-#include "moke/runtime/container/vector_impl.inc"
+#include "mokert/container/allocator.hpp"
+#include "mokert/container/vector_impl.inc"
 namespace moke {
 template <class T>
 using device_vector = vector<T, device_memory_t>;

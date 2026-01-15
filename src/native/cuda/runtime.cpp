@@ -1,5 +1,5 @@
-#include "moke/runtime/common.hpp"
-#include "moke/native/runtime.hpp"
+#include "mokert/common.hpp"
+#include "mokert/native/runtime.hpp"
 
 #include <cuda.h>
 #include <cuda_runtime_api.h>

@@ -1,6 +1,6 @@
 #pragma once
-#include "moke/native.hpp"
-#include "moke/runtime/common.hpp"
+#include "mokert/native.hpp"
+#include "mokert/common.hpp"
 #include <bit>
 
 namespace moke {

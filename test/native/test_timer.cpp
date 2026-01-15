@@ -1,6 +1,6 @@
-#include "moke/native/runtime.hpp"
-#include "moke/native/timer.hpp"
-#include "moke/runtime.hpp"
+#include "mokert/native/runtime.hpp"
+#include "mokert/native/timer.hpp"
+#include "mokert/mokert.hpp"
 #include <gtest/gtest.h>
 
 #if defined __clang__

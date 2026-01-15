@@ -1,5 +1,5 @@
 #pragma once
-#include "moke/runtime/common.hpp"
+#include "mokert/common.hpp"
 
 #if defined MOKE_PLATFORM_CUDA
 #include <cuda_runtime.h>

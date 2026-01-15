@@ -1,6 +1,6 @@
-#include "moke/runtime/common.hpp"
-#include "moke/native/memory.hpp"
-#include "moke/native/runtime.hpp"
+#include "mokert/common.hpp"
+#include "mokert/native/memory.hpp"
+#include "mokert/native/runtime.hpp"
 
 namespace moke {
 MOKE_KERNEL void memcmp_kernel(int *equal, const char *lhs, const char *rhs, size_t length) {

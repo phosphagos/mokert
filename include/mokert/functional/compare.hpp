@@ -1,7 +1,7 @@
 #pragma once
-#include "moke/native.hpp"
-#include "moke/runtime/memory.hpp"
-#include "moke/runtime/vector.hpp"
+#include "mokert/native.hpp"
+#include "mokert/memory.hpp"
+#include "mokert/vector.hpp"
 #include <cmath>
 
 namespace moke::compare {

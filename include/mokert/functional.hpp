@@ -1,7 +1,7 @@
 #pragma once
-#include "moke/runtime/functional/compare.hpp"
-#include "moke/runtime/functional/fill.hpp"
-#include "moke/runtime/vector.hpp"
+#include "mokert/functional/compare.hpp"
+#include "mokert/functional/fill.hpp"
+#include "mokert/vector.hpp"
 
 namespace moke {
 template <class Container, class Functor>

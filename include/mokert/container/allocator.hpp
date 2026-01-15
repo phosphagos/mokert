@@ -1,5 +1,5 @@
 #pragma once
-#include "moke/runtime/memory.hpp"
+#include "mokert/memory.hpp"
 
 namespace moke {
 template <class T, class Memory>
