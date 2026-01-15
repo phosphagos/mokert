@@ -21,4 +21,5 @@ moke_add_test(
     test_moke_runtime
     runtime/test_vector.cpp
     runtime/test_functional.cpp
+    runtime/test_profiler.cpp
 )
