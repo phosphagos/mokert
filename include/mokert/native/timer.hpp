@@ -13,10 +13,10 @@ duration<dest_period> duration_cast(duration<src_period> dur) {
 }
 
 namespace device {
-#if defined MOKE_PLATFORM_CUDA
+#if defined MOKERT_PLATFORM_CUDA
     using stream_t = cudaStream_t;
     using event_t = cudaEvent_t;
-#elif defined MOKE_PLATFORM_HIP
+#elif defined MOKERT_PLATFORM_HIP
     using stream_t = hipStream_t;
     using event_t = hipEvent_t;
 #endif

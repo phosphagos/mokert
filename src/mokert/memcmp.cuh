@@ -1,9 +1,8 @@
 #include "mokert/common.hpp"
-#include "mokert/native/memory.hpp"
-#include "mokert/native/runtime.hpp"
+#include "mokert/native.hpp"
 
 namespace moke {
-MOKE_KERNEL void memcmp_kernel(int *equal, const char *lhs, const char *rhs, size_t length) {
+MOKERT_KERNEL void memcmp_kernel(int *equal, const char *lhs, const char *rhs, size_t length) {
     int idx = threadIdx.x + blockDim.x * blockIdx.x;
     for (; idx < length; idx += gridDim.x * blockDim.x) {
         if (lhs[idx] != rhs[idx]) {

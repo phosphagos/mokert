@@ -6,19 +6,19 @@
 #include <random>
 
 namespace moke {
-template <class T> MOKE_INLINE bool absolute_close(T a, T b, float epsilon) {
+template <class T> MOKERT_INLINE bool absolute_close(T a, T b, float epsilon) {
     return a == b ? true : fabsf(a - b) < epsilon;
 }
 
-template <class T> MOKE_INLINE bool relative_close(T a, T b, float epsilon) {
+template <class T> MOKERT_INLINE bool relative_close(T a, T b, float epsilon) {
     return a == b ? true : fabsf(a - b) < epsilon * fmax(fabsf(a), fabsf(b));
 }
 
-template <> MOKE_INLINE bool absolute_close(double a, double b, float epsilon) {
+template <> MOKERT_INLINE bool absolute_close(double a, double b, float epsilon) {
     return a == b ? true : fabs(a - b) < epsilon;
 }
 
-template <> MOKE_INLINE bool relative_close(double a, double b, float epsilon) {
+template <> MOKERT_INLINE bool relative_close(double a, double b, float epsilon) {
     return a == b ? true : fabs(a - b) < epsilon * fmax(fabs(a), fabs(b));
 }
 

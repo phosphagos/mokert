@@ -1,25 +1,24 @@
-#include "mokert/native/algorithm.hpp"
-#include "mokert/native/memory.hpp"
+#include "mokert/native.hpp"
 
 namespace moke {
 template <class State>
-MOKE_DEVICE void random_init(uint64_t seed, uint64_t subseq, uint64_t offset, State &state);
+MOKERT_DEVICE void random_init(uint64_t seed, uint64_t subseq, uint64_t offset, State &state);
 
 template <class State>
-MOKE_DEVICE float random_uniform(State &state);
+MOKERT_DEVICE float random_uniform(State &state);
 
 template <class State>
-MOKE_DEVICE double random_uniform_double(State &state);
+MOKERT_DEVICE double random_uniform_double(State &state);
 
 template <class T, class State>
-MOKE_DEVICE T random_uniform(State &state, float alpha, float beta) {
+MOKERT_DEVICE T random_uniform(State &state, float alpha, float beta) {
     float res = std::is_same_v<T, double> ? random_uniform_double(state)
                                           : random_uniform(state);
     return T(res * alpha + beta);
 }
 
 template <class State, class T>
-MOKE_KERNEL void fill_random_kernel(T *dest, size_t length, float min, float max, uint32_t seed) {
+MOKERT_KERNEL void fill_random_kernel(T *dest, size_t length, float min, float max, uint32_t seed) {
     State state;
 
     auto tid = threadIdx.x + blockIdx.x * blockDim.x;

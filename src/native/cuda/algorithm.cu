@@ -12,15 +12,15 @@ void fill_random(device_memory_t, T *dest, size_t length, float min, float max, 
 }
 
 template <>
-MOKE_DEVICE void random_init(uint64_t seed, uint64_t subseq, uint64_t offset, curandState_t &state) {
+MOKERT_DEVICE void random_init(uint64_t seed, uint64_t subseq, uint64_t offset, curandState_t &state) {
     curand_init(seed, subseq, offset, &state);
 }
 
 template <>
-MOKE_DEVICE float random_uniform(curandState_t &state) { return curand_uniform(&state); }
+MOKERT_DEVICE float random_uniform(curandState_t &state) { return curand_uniform(&state); }
 
 template <class State>
-MOKE_DEVICE double random_uniform_double(State &state) { return curand_uniform_double(&state); }
+MOKERT_DEVICE double random_uniform_double(State &state) { return curand_uniform_double(&state); }
 
 DEVICE_FILL_RANDOM(float);
 DEVICE_FILL_RANDOM(double);

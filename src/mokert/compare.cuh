@@ -1,11 +1,9 @@
 #pragma once
-#include "mokert/native/runtime.hpp"
-#include "mokert/native/memory.hpp"
-#include "mokert/native/algorithm.hpp"
+#include "mokert/native.hpp"
 
 namespace moke {
 template <typename T, auto CloseFunc>
-MOKE_KERNEL void compare_all_close_kernel(int *equal, T const *lhs, T const *rhs, size_t length, float epsilon) {
+MOKERT_KERNEL void compare_all_close_kernel(int *equal, T const *lhs, T const *rhs, size_t length, float epsilon) {
     int idx = threadIdx.x + blockDim.x * blockIdx.x;
     for (; idx < length; idx += gridDim.x * blockDim.x) {
         if (!CloseFunc(lhs[idx], rhs[idx], epsilon)) {

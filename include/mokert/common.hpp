@@ -4,20 +4,20 @@
 #include <type_traits>
 
 #if defined __CUDACC__ || defined __HIPCC__
-#define MOKE_UNIFIED __host__ __device__
-#define MOKE_DEVICE __device__
-#define MOKE_HOST __host__
-#define MOKE_KERNEL __global__
+#define MOKERT_UNIFIED __host__ __device__
+#define MOKERT_DEVICE __device__
+#define MOKERT_HOST __host__
+#define MOKERT_KERNEL __global__
 #else
-#define MOKE_UNIFIED
-#define MOKE_HOST
-#define MOKE_DEVICE
-#define MOKE_KERNEL
+#define MOKERT_UNIFIED
+#define MOKERT_HOST
+#define MOKERT_DEVICE
+#define MOKERT_KERNEL
 #endif
 
-#define MOKE_INLINE MOKE_UNIFIED inline
-#define MOKE_CONSTEXPR MOKE_INLINE constexpr
-#define MOKE_CAPI extern "C"
+#define MOKERT_INLINE MOKERT_UNIFIED inline
+#define MOKERT_CONSTEXPR MOKERT_INLINE constexpr
+#define MOKERT_CAPI extern "C"
 
 namespace moke {
 using size_t = std::size_t;

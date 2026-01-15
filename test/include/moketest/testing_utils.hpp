@@ -29,16 +29,16 @@ using GTestProduction = GTestTypeList<Product<Lists...>>;
 
 using memory_spaces = moke::TypeList<moke::host_memory_t, moke::device_memory_t>;
 
-#if defined MOKE_PLATFORM_CUDA
+#if defined MOKERT_PLATFORM_CUDA
 #include <cuda_bf16.h>
 #include <cuda_fp16.h>
 
 using half_t = __half;
 using bfloat16_t = __nv_bfloat16;
-#elif defined MOKE_PLATFORM_HIP
+#elif defined MOKERT_PLATFORM_HIP
 #include <hip/hip_fp16.h>
 #include <hip/hip_bf16.h>
 
 using half_t = __half;
 using bfloat16_t = __hip_bfloat16;
-#endif // MOKE_PLATFORM
+#endif // MOKERT_PLATFORM
