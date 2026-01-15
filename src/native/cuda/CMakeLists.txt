@@ -5,6 +5,7 @@ target_sources(
     runtime.cpp
     memory.cu
     algorithm.cu
+    timer.cpp
 )
 
 target_compile_definitions(mokert PUBLIC -DMOKE_PLATFORM_CUDA)
