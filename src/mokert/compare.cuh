@@ -29,13 +29,14 @@ bool compare_all_close(const T *lhs, const T *rhs, size_t length, float epsilon)
     return *hres;
 }
 
-template <bool relative, class T>
-bool compare_all_close(device_memory_t, const T *lhs, const T *rhs, size_t length, float epsilon) {
-    constexpr auto compare_func = relative ? relative_close<T> : absolute_close<T>;
+template <class T, bool REL>
+bool compare_all_close(device_memory_t, const T *lhs, const T *rhs, size_t length, //
+                       std::bool_constant<REL>, float epsilon) {
+    constexpr auto compare_func = REL ? relative_close<T> : absolute_close<T>;
     return compare_all_close<T, compare_func>(lhs, rhs, length, epsilon);
 }
 } // namespace moke
 
-#define DEVICE_COMPARE_ALL_CLOSE(T)                                                                 \
-    template bool compare_all_close<true, T>(device_memory_t, const T *, const T *, size_t, float); \
-    template bool compare_all_close<false, T>(device_memory_t, const T *, const T *, size_t, float);
+#define DEVICE_COMPARE_ALL_CLOSE(T)                                                                        \
+    template bool compare_all_close(device_memory_t, const T *, const T *, size_t, std::true_type, float); \
+    template bool compare_all_close(device_memory_t, const T *, const T *, size_t, std::false_type, float);

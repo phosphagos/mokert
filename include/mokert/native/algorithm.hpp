@@ -22,15 +22,15 @@ template <> MOKERT_INLINE bool relative_close(double a, double b, float epsilon)
     return a == b ? true : fabs(a - b) < epsilon * fmax(fabs(a), fabs(b));
 }
 
-template <bool relative = true, class T>
-bool compare_all_close(host_memory_t, const T *lhs, const T *rhs, size_t length, float epsilon = 1e-6) {
-    auto compare_func = relative ? relative_close<T> : absolute_close<T>;
+template <class T, bool RELATIVE = true>
+bool compare_all_close(host_memory_t, const T *lhs, const T *rhs, size_t length, //
+                       std::bool_constant<RELATIVE> = {}, float epsilon = 1e-6) {
+    auto compare_func = RELATIVE ? relative_close<T> : absolute_close<T>;
     for (int i = 0; i < length; i++) {
         if (!compare_func(lhs[i], rhs[i], epsilon)) { return false; }
     }
     return true;
 }
-
 
 template <class T>
 void fill_random(host_memory_t, T *dest, size_t length, float min, float max, uint32_t seed) {
@@ -39,8 +39,9 @@ void fill_random(host_memory_t, T *dest, size_t length, float min, float max, ui
     for (int i = 0; i < length; i++) { dest[i] = (T)dist(gen); }
 }
 
-template <bool relative = true, class T>
-bool compare_all_close(device_memory_t, const T *lhs, const T *rhs, size_t length, float epsilon = 1e-6);
+template <class T, bool REL = true>
+bool compare_all_close(device_memory_t, const T *lhs, const T *rhs, size_t length, //
+                       std::bool_constant<REL> = {}, float epsilon = 1e-6);
 
 template <class T>
 void fill_random(device_memory_t, T *dest, size_t length, float min, float max, uint32_t seed);

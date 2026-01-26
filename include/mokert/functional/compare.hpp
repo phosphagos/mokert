@@ -30,24 +30,28 @@ public:
     }
 };
 
-template <class T, class MS>
+template <template <class, class> class Container, class T, class MS>
+all_equals(const Container<T, MS> &) -> all_equals<T, MS>;
+
+template <class T, class MS, bool REL = true>
 class all_close {
 private:
+    constexpr static std::bool_constant<REL> m_relative{};
     const T *m_baseline;
     size_t m_length;
     float m_epsilon;
 
 public:
-    all_close(MS, const T *baseline, size_t length, float epsilon = 1e-6) noexcept
+    all_close(MS, const T *baseline, size_t length, float epsilon = 1e-6, std::bool_constant<REL> = {}) noexcept
             : m_baseline{baseline}, m_length{length}, m_epsilon(epsilon) {}
 
     template <class Container>
-    all_close(const Container &baseline, float epsilon = 1e-6) noexcept
+    all_close(const Container &baseline, float epsilon = 1e-6, std::bool_constant<REL> = {}) noexcept
             : all_close{baseline.mem_space(), baseline.data(), baseline.size(), epsilon} {}
 
     bool operator()(MS memory_space, const T *result, size_t length) const {
         if (length != m_length) { return false; }
-        return compare_all_close<true>(memory_space, result, m_baseline, length, m_epsilon);
+        return compare_all_close(memory_space, result, m_baseline, length, m_relative, m_epsilon);
     }
 
     template <class Container>
@@ -57,8 +61,11 @@ public:
 };
 
 template <template <class, class> class Container, class T, class MS>
-all_equals(const Container<T, MS> &) -> all_equals<T, MS>;
+all_close(const Container<T, MS> &, float = 1e-6) -> all_close<T, MS, true>;
 
 template <template <class, class> class Container, class T, class MS>
-all_close(const Container<T, MS> &, float = 1e-6) -> all_close<T, MS>;
+all_close(const Container<T, MS> &, float, std::true_type) -> all_close<T, MS, true>;
+
+template <template <class, class> class Container, class T, class MS>
+all_close(const Container<T, MS> &, float, std::false_type) -> all_close<T, MS, false>;
 } // namespace moke::compare

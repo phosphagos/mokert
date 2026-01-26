@@ -56,9 +56,11 @@ TYPED_TEST(TestFunctional, TestCompare) {
     vec0 | fill::constant(10.0);
     vec1 | fill::constant(14.0);
     EXPECT_FALSE(vec1 | compare::all_equals(vec0));
-    EXPECT_TRUE(vec1 | compare::all_close(vec0, 0.5));
+    EXPECT_FALSE(vec1 | compare::all_close(vec0, 0.5, std::false_type{}));
+    EXPECT_TRUE(vec1 | compare::all_close(vec0, 0.5, std::true_type{}));
 
     vec1 | fill::constant(4.0);
     EXPECT_FALSE(vec1 | compare::all_equals(vec0));
-    EXPECT_FALSE(vec1 | compare::all_close(vec0, 0.5));
+    EXPECT_FALSE(vec1 | compare::all_close(vec0, 0.5, std::false_type{}));
+    EXPECT_FALSE(vec1 | compare::all_close(vec0, 0.5, std::true_type{}));
 }
