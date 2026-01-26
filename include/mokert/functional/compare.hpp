@@ -47,7 +47,7 @@ public:
 
     bool operator()(MS memory_space, const T *result, size_t length) const {
         if (length != m_length) { return false; }
-        return compare_all_close<true>(memory_space, result, m_baseline, length, m_epsilon);
+        return compare_all_close<false>(memory_space, result, m_baseline, length, m_epsilon);
     }
 
     template <class Container>
