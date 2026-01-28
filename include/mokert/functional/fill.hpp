@@ -25,6 +25,7 @@ class random {
 private:
     float m_min, m_max;
     uint32_t m_seed{0};
+    int32_t m_bits{-1};
 
 public:
     random() : m_min{0.0}, m_max{1.0} {}
@@ -35,9 +36,11 @@ public:
 
     decltype(auto) seed(uint32_t seed) { return m_seed = seed, *this; }
 
+    decltype(auto) bits(int32_t bits) { return m_bits = bits, *this; }
+
     template <class memory_space_t, class T>
     void operator()(memory_space_t mem_space, T *dest, size_t length) const {
-        return fill_random(mem_space, dest, length, m_min, m_max, m_seed);
+        return fill_random(mem_space, dest, length, m_min, m_max, m_seed, m_bits);
     }
 
     template <class Container>

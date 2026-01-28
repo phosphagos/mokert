@@ -31,17 +31,20 @@ bool compare_all_close(host_memory_t, const T *lhs, const T *rhs, size_t length,
     return true;
 }
 
-
 template <class T>
-void fill_random(host_memory_t, T *dest, size_t length, float min, float max, uint32_t seed) {
+void fill_random(host_memory_t, T *dest, size_t length, float min, float max, uint32_t seed, int bits = -1) {
     std::mt19937 gen{seed};
     std::uniform_real_distribution<> dist{min, max};
-    for (int i = 0; i < length; i++) { dest[i] = (T)dist(gen); }
+    for (int i = 0; i < length; i++) {
+        float rnd = dist(gen);
+        if (bits >= 0) { rnd = std::round(rnd * (1 << bits)) / (1 << bits); }
+        dest[i] = (T)rnd;
+    }
 }
 
 template <bool relative = true, class T>
 bool compare_all_close(device_memory_t, const T *lhs, const T *rhs, size_t length, float epsilon = 1e-6);
 
 template <class T>
-void fill_random(device_memory_t, T *dest, size_t length, float min, float max, uint32_t seed);
+void fill_random(device_memory_t, T *dest, size_t length, float min, float max, uint32_t seed, int bits = -1);
 } // namespace moke::compare

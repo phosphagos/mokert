@@ -7,8 +7,8 @@
 
 namespace moke {
 template <class T>
-void fill_random(device_memory_t, T *dest, size_t length, float min, float max, uint32_t seed) {
-    return device_fill_random<curandState_t>(dest, length, min, max, seed);
+void fill_random(device_memory_t, T *dest, size_t length, float min, float max, uint32_t seed, int bits) {
+    return device_fill_random<curandState_t>(dest, length, min, max, seed, bits);
 }
 
 template <>
