@@ -23,6 +23,12 @@ public:
 
     iterator end() { return iterator{*this, m_total_loops}; }
 
+    profiler &loops(int warmups, int loops) {
+        m_warm_loops = warmups;
+        m_total_loops = warmups + loops;
+        return *this;
+    }
+
     template <class metric_t>
     double elapsed(metric_t) const {
         auto result = duration_cast<metric_t>(Timer::elapsed() / (m_total_loops - m_warm_loops));
